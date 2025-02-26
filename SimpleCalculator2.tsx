@@ -5,18 +5,17 @@ import {
   Text, 
   TextInput,
 } from 'react-native';
-import { calcDistance, calcMidpoint } from './Calculation.ts'
+import { calcDistance, calcMidpoint } from './Calculation'
 
 
-const Question2 = () => {
+const SimpleCalculator2 = () => {
   const [x1, setX1] = useState<string>((Math.random() * 20 - 10).toFixed(2).toString());
   const [y1, setY1] = useState<string>((Math.random() * 20 - 10).toFixed(2).toString());
   const [x2, setX2] = useState<string>((Math.random() * 20 - 10).toFixed(2).toString());
   const [y2, setY2] = useState<string>((Math.random() * 20 - 10).toFixed(2).toString());
-  const [midpointX, setMidpointX] = useState<string>(calcMidpoint(x1, x2).toString());
-  const [midpointY, setMidpointY] = useState<string>(calcMidpoint(y1, y2).toString());
-  const [distance, setDistance] = useState<string>(calcDistance(x1, x2, y1, y2).toString());
-
+  const [midpointX, setMidpointX] = useState<string>(calcMidpoint(Number(x1), Number(x2)).toString());
+  const [midpointY, setMidpointY] = useState<string>(calcMidpoint(Number(y1), Number(y2)).toString());
+  const [distance, setDistance] = useState<string>(calcDistance(Number(x1), Number(x2), Number(y1), Number(y2)).toString());
 
   return (
     <View style={styles.body}>
@@ -30,9 +29,9 @@ const Question2 = () => {
           style={styles.input} 
           onChangeText={(input) => {
             setX1(input);
-            setMidpointX(calcMidpoint(input, x2).toString());
-            setMidpointY(calcMidpoint(y1, y2).toString());
-            setDistance(calcDistance(input, x2, y1, y2).toString());
+            setMidpointX(calcMidpoint(Number(input), Number(x2)).toString());
+            setMidpointY(calcMidpoint(Number(y1), Number(y2)).toString());
+            setDistance(calcDistance(Number(input), Number(x2), Number(y1), Number(y2)).toString());
           }}
           value={x1}
           keyboardType={'numeric'}
@@ -46,9 +45,9 @@ const Question2 = () => {
           style={styles.input} 
           onChangeText={(input) => {
             setY1(input);
-            setMidpointX(calcMidpoint(x1, x2).toString());
-            setMidpointY(calcMidpoint(input, y2).toString());
-            setDistance(calcDistance(x1, x2, input, y2).toString());
+            setMidpointX(calcMidpoint(Number(x1), Number(x2)).toString());
+            setMidpointY(calcMidpoint(Number(input), Number(y2)).toString());
+            setDistance(calcDistance(Number(x1), Number(x2), Number(input), Number(y2)).toString());
           }}
           value={y1}
           keyboardType={'numeric'}
@@ -62,9 +61,9 @@ const Question2 = () => {
           style={styles.input} 
           onChangeText={(input) => {
             setX2(input);
-            setMidpointX(calcMidpoint(x1, input).toString());
-            setMidpointY(calcMidpoint(y1, y2).toString());
-            setDistance(calcDistance(x1, input, y1, y2).toString());
+            setMidpointX(calcMidpoint(Number(x1), Number(input)).toString());
+            setMidpointY(calcMidpoint(Number(y1), Number(y2)).toString());
+            setDistance(calcDistance(Number(x1), Number(input), Number(y1), Number(y2)).toString());
           }}
           value={x2}
           keyboardType={'numeric'}
@@ -78,9 +77,9 @@ const Question2 = () => {
           style={styles.input} 
           onChangeText={(input) => {
             setY2(input);
-            setMidpointX(calcMidpoint(x1, x2).toString());
-            setMidpointY(calcMidpoint(y1, input).toString());
-            setDistance(calcDistance(x1, x2, y1, input).toString());
+            setMidpointX(calcMidpoint(Number(x1), Number(x2)).toString());
+            setMidpointY(calcMidpoint(Number(y1), Number(input)).toString());
+            setDistance(calcDistance(Number(x1), Number(x2), Number(y1), Number(input)).toString());
           }}
           value={y2}
           keyboardType={'numeric'}
@@ -105,8 +104,6 @@ const Question2 = () => {
           editable={false}
         />
       </View>
-
-      
     </View>
   );
 }
@@ -149,4 +146,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Question2;
+export default SimpleCalculator2;
